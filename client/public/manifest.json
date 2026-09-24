@@ -1,0 +1,15 @@
+{
+  "name": "Glo by Lantern",
+  "short_name": "Glo",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#282C37",
+  "theme_color": "#282C37",
+  "icons": [
+    {
+      "src": "/manus-storage/glo-tab-favicon_476a5053.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
