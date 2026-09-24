@@ -46,7 +46,7 @@ export default function DemoPage() {
                 <div key={item}>
                   <span className="demo-expectation-index">0{index + 1}</span>
                   <span className="demo-check-node" aria-hidden="true">
-                    <img src="/manus-storage/glo-g-circle-authoritative_b31f5550.svg" alt="" />
+                    <img src="/images/glo-g-circle-authoritative_b31f5550.svg" alt="" />
                   </span>
                   {item}
                 </div>

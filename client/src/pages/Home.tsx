@@ -12,7 +12,7 @@ import OperationalProof from "@/components/OperationalProof";
 import HeroProductDemo from "@/components/HeroProductDemo";
 import StaffingWorldCampaign from "@/components/StaffingWorldCampaign";
 
-const GLO_LOGO = "/manus-storage/glo-cyan-no-tm_09e4b011.svg";
+const GLO_LOGO = "/images/glo-cyan-no-tm_09e4b011.svg";
 
 const experiences = [
   {
@@ -180,7 +180,7 @@ export default function Home() {
               ].map(([title, copy]) => (
                 <div key={title} className="reasoning-row">
                   <span className="reasoning-g-frame" aria-hidden="true">
-                    <img className="reasoning-g-mark" src="/manus-storage/glo-g-circle-authoritative_b31f5550.svg" alt="" />
+                    <img className="reasoning-g-mark" src="/images/glo-g-circle-authoritative_b31f5550.svg" alt="" />
                   </span>
                   <div><strong>{title}</strong><p>{copy}</p></div>
                 </div>
@@ -198,7 +198,7 @@ export default function Home() {
             </div>
             <div className="execution-board">
               <div className="product-shot product-shot-submissions">
-                <img src="/manus-storage/glo-home-move-candidates_80a98294.webp" alt="Glo Candidates view showing candidate profiles, current stage, recruiter, ranking, and recommended action" />
+                <img src="/images/glo-home-move-candidates_80a98294.webp" alt="Glo Candidates view showing candidate profiles, current stage, recruiter, ranking, and recommended action" />
               </div>
               <div className="product-shot-caption"><span>Live operating view</span><strong>Priority becomes the next move.</strong></div>
             </div>
@@ -273,7 +273,7 @@ export default function Home() {
                   <div key={title}>
                     <strong className="trust-item-title">
                       <span className="trust-title-g-frame" aria-hidden="true">
-                        <img src="/manus-storage/glo-g-circle-authoritative_b31f5550.svg" alt="" />
+                        <img src="/images/glo-g-circle-authoritative_b31f5550.svg" alt="" />
                       </span>
                       <span>{title}</span>
                     </strong>

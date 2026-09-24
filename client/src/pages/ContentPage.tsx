@@ -33,9 +33,9 @@ type PageConfig = {
   links: Array<[string, string]>;
 };
 
-const recruiterArt = "/manus-storage/glo-recruiter-priority-window_7164fab7.png";
-const portalsArt = "/manus-storage/glo-connected-portals_1c4fcb82.png";
-const trustArt = "/manus-storage/glo-ai-guardrails_0df34c89.png";
+const recruiterArt = "/images/glo-recruiter-priority-window_7164fab7.png";
+const portalsArt = "/images/glo-connected-portals_1c4fcb82.png";
+const trustArt = "/images/glo-ai-guardrails_0df34c89.png";
 
 const pages: Record<string, PageConfig> = {
   "/recruiter-os/": {

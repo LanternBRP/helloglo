@@ -6,9 +6,9 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 
-const G_MARK = "/manus-storage/glo-g-circle-authoritative_b31f5550.svg";
+const G_MARK = "/images/glo-g-circle-authoritative_b31f5550.svg";
 const GROWTH_PIPELINE = "https://helloglo.vinceorodazo.com/recruiter-os-crm-pipeline_1e711356.png";
-const SUBMISSIONS_WORKFLOW = "/manus-storage/glo-client-room-submissions_ce7a6397.webp";
+const SUBMISSIONS_WORKFLOW = "/images/glo-client-room-submissions_ce7a6397.webp";
 const BILLING_WORKFLOW = "https://helloglo.vinceorodazo.com/recruiter-os-billing-workflow_4eabdb12.png";
 
 type NarrativeKind = "recruiter" | "client" | "intelligence" | "integrations";

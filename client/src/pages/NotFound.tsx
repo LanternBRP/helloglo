@@ -14,7 +14,7 @@ export default function NotFound() {
       <Card className="w-full max-w-lg mx-4 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
         <CardContent className="pt-8 pb-8 text-center">
           <div className="flex justify-center mb-6">
-            <img className="fallback-g-mark" src="/manus-storage/glo-g-circle-authoritative_b31f5550.svg" alt="" aria-hidden="true" />
+            <img className="fallback-g-mark" src="/images/glo-g-circle-authoritative_b31f5550.svg" alt="" aria-hidden="true" />
           </div>
 
           <h1 className="text-4xl font-bold text-slate-900 mb-2">404</h1>

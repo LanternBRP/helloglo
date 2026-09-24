@@ -37,8 +37,8 @@ The Lantern mark should be visually restrained in the same way a parent-company 
 
 | Brand | Current approved asset | Destination |
 |---|---|---|
-| Lantern | `/manus-storage/lantern_logo_nav_transparent_9b35580b.svg` | `https://lanternglobal.ai` |
-| Glo | `/manus-storage/glo-cyan-no-tm_09e4b011.svg` | `/` |
+| Lantern | `/images/lantern_logo_nav_transparent_9b35580b.svg` | `https://lanternglobal.ai` |
+| Glo | `/images/glo-cyan-no-tm_09e4b011.svg` | `/` |
 
 Other product teams must substitute their approved product wordmark and product-home destination while retaining the same parent-product order and behavior.
 

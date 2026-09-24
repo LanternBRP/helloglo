@@ -3,7 +3,7 @@
  * flow using conference-local times and an explicit email handoff.
  */
 
-export const STAFFING_WORLD_LOGO = "/manus-storage/staffing-world-2026-logo_62ad502b.png";
+export const STAFFING_WORLD_LOGO = "/images/staffing-world-2026-logo_62ad502b.png";
 export const GLO_UP_EMAIL = "hello@helloglo.com";
 
 export type StaffingWorldDate = {

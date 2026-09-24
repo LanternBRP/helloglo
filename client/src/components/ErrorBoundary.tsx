@@ -25,7 +25,7 @@ class ErrorBoundary extends Component<Props, State> {
       return (
         <div className="flex items-center justify-center min-h-screen p-8 bg-background">
           <div className="flex flex-col items-center w-full max-w-2xl p-8">
-            <img className="fallback-g-mark mb-6 flex-shrink-0" src="/manus-storage/glo-g-circle-authoritative_b31f5550.svg" alt="" aria-hidden="true" />
+            <img className="fallback-g-mark mb-6 flex-shrink-0" src="/images/glo-g-circle-authoritative_b31f5550.svg" alt="" aria-hidden="true" />
 
             <h2 className="text-xl mb-4">An unexpected error occurred.</h2>
 

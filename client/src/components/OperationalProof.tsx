@@ -172,7 +172,7 @@ export default function OperationalProof({ mode = "generic", compact = false }: 
       </div>
       <div className="ops-proof-title">
         <div><span>Resolved priority</span><strong>{data.title}</strong></div>
-        <img className="ops-glo-mark" src="/manus-storage/glo-g-circle-authoritative_b31f5550.svg" alt="" aria-hidden="true" />
+        <img className="ops-glo-mark" src="/images/glo-g-circle-authoritative_b31f5550.svg" alt="" aria-hidden="true" />
       </div>
       <div className="ops-proof-decision">
         <h3>{data.decision}</h3>

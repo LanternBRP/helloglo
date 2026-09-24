@@ -8,8 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { getNavigationContext, navGroups, normalizeNavigationPath } from "@/lib/navigation";
 
-const LOGO = "/manus-storage/glo-cyan-no-tm_09e4b011.svg";
-const LANTERN_LOGO = "/manus-storage/lantern_logo_nav_transparent_9b35580b.svg";
+const LOGO = "/images/glo-cyan-no-tm_09e4b011.svg";
+const LANTERN_LOGO = "/images/lantern_logo_nav_transparent_9b35580b.svg";
 const LANTERN_HOME = "https://lanternglobal.ai";
 const EVENT_TICKER_MESSAGE = "Join Glo at Staffing World 2026 • October 12–14 • Denver, Colorado";
 const EVENT_TICKER_ITEMS = Array.from({ length: 4 });
