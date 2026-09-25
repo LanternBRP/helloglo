@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { sendToFormspree } from "@/lib/formspree";
 
 const inquiryOptions = [
   ["general", "General question"],
@@ -23,16 +24,26 @@ const inquiryOptions = [
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
   const [inquiryType, setInquiryType] = useState("");
   const inquiryLabel = useMemo(
     () => inquiryOptions.find(([value]) => value === inquiryType)?.[1] ?? "General",
     [inquiryType],
   );
 
-  const submit = (event: FormEvent<HTMLFormElement>) => {
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSubmitted(true);
-    toast.success("Thanks for reaching out.");
+    if (sending) return;
+    setSending(true);
+    try {
+      await sendToFormspree(`Contact Us — ${inquiryLabel}`, new FormData(event.currentTarget));
+      setSubmitted(true);
+      toast.success("Thanks for reaching out.");
+    } catch {
+      toast.error("Your message could not be sent. Please try again in a moment.");
+    } finally {
+      setSending(false);
+    }
   };
 
   const reset = () => {
@@ -111,7 +122,8 @@ export default function ContactPage() {
                 </div>
                 <div className="form-field"><Label htmlFor="contactSubject">Subject</Label><Input id="contactSubject" name="subject" required /></div>
                 <div className="form-field"><Label htmlFor="contactMessage">Message</Label><Textarea id="contactMessage" name="message" rows={5} required placeholder="Tell us what you need, what you’re trying to solve, or who you need to reach." /></div>
-                <Button type="submit" className="glo-button w-full">Send message <span className="action-glyph">↗</span></Button>
+                <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ display: "none" }} />
+                <Button type="submit" className="glo-button w-full" disabled={sending}>{sending ? "Sending…" : <>Send message <span className="action-glyph">↗</span></>}</Button>
                 <div className="form-route-note contact-route-note">
                   <span className="route-node" />
                   <p>Only share the information needed for this request. Do not include sensitive personal or candidate data. <Link href="/privacy/">Review our Privacy Policy.</Link></p>

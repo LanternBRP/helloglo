@@ -1,10 +1,9 @@
 /**
  * Staffing World Glo Up campaign data: a concise, human-confirmed meeting request
- * flow using conference-local times and an explicit email handoff.
+ * flow using conference-local times, delivered through Formspree.
  */
 
 export const STAFFING_WORLD_LOGO = "/images/staffing-world-2026-logo_62ad502b.png";
-export const GLO_UP_EMAIL = "hello@helloglo.com";
 
 export type StaffingWorldDate = {
   id: "2026-10-12" | "2026-10-13" | "2026-10-14";
@@ -34,34 +33,6 @@ export const STAFFING_WORLD_TIMES = [
 
 export type StaffingWorldTime = (typeof STAFFING_WORLD_TIMES)[number];
 
-export type GloUpAttendee = {
-  name: string;
-  business: string;
-  title: string;
-  email: string;
-};
-
-export function buildGloUpEmail(
-  date: StaffingWorldDate,
-  time: StaffingWorldTime,
-  attendee: GloUpAttendee,
-) {
-  const subject = `Staffing World Glo Up request — ${date.month} ${date.day} at ${time}`;
-  const body = [
-    "Hello Glo team,",
-    "",
-    "I would like to request a Glo Up meeting at Staffing World 2026.",
-    "",
-    `Requested date: ${date.fullLabel}`,
-    `Requested time: ${time} (conference local time)`,
-    "",
-    `Name: ${attendee.name}`,
-    `Business: ${attendee.business}`,
-    `Title: ${attendee.title}`,
-    `Email: ${attendee.email}`,
-    "",
-    "Please reply to confirm this requested time.",
-  ].join("\n");
-
-  return `mailto:${GLO_UP_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+export function gloUpSubject(date: StaffingWorldDate, time: StaffingWorldTime) {
+  return `Staffing World Glo Up request — ${date.month} ${date.day} at ${time}`;
 }

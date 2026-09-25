@@ -4,15 +4,16 @@
  */
 import { FormEvent, useMemo, useState } from "react";
 import { Link } from "wouter";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import PageMeta from "@/components/PageMeta";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import { sendToFormspree } from "@/lib/formspree";
 import {
-  buildGloUpEmail,
-  GLO_UP_EMAIL,
+  gloUpSubject,
   STAFFING_WORLD_DATES,
   STAFFING_WORLD_LOGO,
   STAFFING_WORLD_TIMES,
@@ -23,7 +24,7 @@ export default function StaffingWorldPage() {
   const [selectedDateId, setSelectedDateId] = useState<string | null>(null);
   const [selectedTime, setSelectedTime] = useState<StaffingWorldTime | null>(null);
   const [requestLaunched, setRequestLaunched] = useState(false);
-  const [emailRequestUrl, setEmailRequestUrl] = useState("");
+  const [sending, setSending] = useState(false);
 
   const selectedDate = useMemo(
     () => STAFFING_WORLD_DATES.find((date) => date.id === selectedDateId) ?? null,
@@ -41,26 +42,27 @@ export default function StaffingWorldPage() {
     setRequestLaunched(false);
   };
 
-  const submitRequest = (event: FormEvent<HTMLFormElement>) => {
+  const submitRequest = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!selectedDate || !selectedTime) return;
+    if (!selectedDate || !selectedTime || sending) return;
 
     const data = new FormData(event.currentTarget);
-    const emailUrl = buildGloUpEmail(selectedDate, selectedTime, {
-      name: String(data.get("name") ?? "").trim(),
-      business: String(data.get("business") ?? "").trim(),
-      title: String(data.get("title") ?? "").trim(),
-      email: String(data.get("email") ?? "").trim(),
-    });
+    data.set("requestedDate", selectedDate.fullLabel);
+    data.set("requestedTime", `${selectedTime} (conference local time)`);
 
-    setEmailRequestUrl(emailUrl);
-    setRequestLaunched(true);
-    window.location.href = emailUrl;
+    setSending(true);
+    try {
+      await sendToFormspree(gloUpSubject(selectedDate, selectedTime), data);
+      setRequestLaunched(true);
+    } catch {
+      toast.error("Your request could not be sent. Please try again in a moment.");
+    } finally {
+      setSending(false);
+    }
   };
 
   const resetRequest = () => {
     setRequestLaunched(false);
-    setEmailRequestUrl("");
   };
 
   return (
@@ -149,9 +151,10 @@ export default function StaffingWorldPage() {
                       </div>
                       <div className="glo-up-email-note">
                         <span aria-hidden="true" />
-                        <p>Your email app will open with this request addressed to <strong>{GLO_UP_EMAIL}</strong>. Send the email, and Glo will reply personally to confirm the time.</p>
+                        <p>Your request goes straight to the Glo team, and someone will reply personally to confirm the time.</p>
                       </div>
-                      <Button type="submit" className="glo-button w-full">Request this time <span className="action-glyph">↗</span></Button>
+                      <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ display: "none" }} />
+                      <Button type="submit" className="glo-button w-full" disabled={sending}>{sending ? "Sending…" : <>Request this time <span className="action-glyph">↗</span></>}</Button>
                     </form>
                   ) : (
                     <p className="glo-up-awaiting">Select both a date and time before adding your information.</p>
@@ -161,10 +164,9 @@ export default function StaffingWorldPage() {
             ) : (
               <div className="glo-up-response" role="status" aria-live="polite">
                 <h2>We look forward to making your business Glo.</h2>
-                <p>Your email request is ready to send. Once it reaches <strong>{GLO_UP_EMAIL}</strong>, someone from Glo will reply personally to confirm your requested time.</p>
+                <p>Your request has been sent. Someone from Glo will reply personally to confirm your requested time.</p>
                 <div>
-                  <Button asChild className="glo-button"><a href={emailRequestUrl}>Open the email again <span className="action-glyph">↗</span></a></Button>
-                  <Button type="button" variant="outline" className="glo-up-reset" onClick={resetRequest}>Review the request</Button>
+                  <Button type="button" variant="outline" className="glo-up-reset" onClick={resetRequest}>Request another time</Button>
                 </div>
               </div>
             )}

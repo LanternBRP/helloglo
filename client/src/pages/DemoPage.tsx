@@ -13,14 +13,25 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { sendToFormspree } from "@/lib/formspree";
 
 export default function DemoPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
 
-  const submit = (event: FormEvent<HTMLFormElement>) => {
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSubmitted(true);
-    toast.success("Thanks. We’ll be in touch.");
+    if (sending) return;
+    setSending(true);
+    try {
+      await sendToFormspree("Book a Demo request", new FormData(event.currentTarget));
+      setSubmitted(true);
+      toast.success("Thanks. We’ll be in touch.");
+    } catch {
+      toast.error("Your request could not be sent. Please try again in a moment.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -97,7 +108,8 @@ export default function DemoPage() {
                 </div>
                 <div className="form-stage"><span>02</span><strong>The signal to resolve</strong><small>Frame the demo</small></div>
                 <div className="form-field"><Label htmlFor="challenge">What work needs to move faster?</Label><Textarea id="challenge" name="challenge" rows={4} placeholder="A hard-to-fill order, a recruiter bottleneck, a client handoff…" /></div>
-                <Button type="submit" className="glo-button w-full">Request the demo <span className="action-glyph">↗</span></Button>
+                <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ display: "none" }} />
+                <Button type="submit" className="glo-button w-full" disabled={sending}>{sending ? "Sending…" : <>Request the demo <span className="action-glyph">↗</span></>}</Button>
                 <div className="form-route-note"><span className="route-node" /><p>Only share the information needed for this request. Do not include sensitive personal or candidate data. <Link href="/privacy/">Review our Privacy Policy.</Link></p></div>
               </form>
             )}
