@@ -2235,13 +2235,10 @@ body,
   outline-offset: 2px;
 }
 
-/*
- * About team: editorial roster rows rather than marketing cards. The initials
- * are temporary, non-fabricated portrait fields that can accept real images later.
- */
+/* About team: concise name-and-title cards with no biography or portrait placeholders. */
 .team-section {
   padding: clamp(5rem,7vw,7.5rem) 0;
-  background: #fffefb;
+  background: #f0e9dc;
   color: #282c37;
   box-shadow: inset 0 1px 0 rgba(40,44,55,.06), inset 0 -1px 0 rgba(40,44,55,.06);
 }
@@ -2281,54 +2278,30 @@ body,
   height: calc(100% + .3rem);
   background: #30c6be;
 }
-.team-roster { border-bottom: 1px solid rgba(40,44,55,.17); }
-.team-profile {
+.team-roster {
   display: grid;
-  grid-template-columns: clamp(8.5rem,11vw,10.75rem) minmax(13rem,.7fr) minmax(22rem,1.65fr);
-  gap: clamp(1.75rem,3vw,3.5rem);
-  min-height: clamp(12rem,16vw,15rem);
-  padding: clamp(1.5rem,2.5vw,2.4rem) 0;
-  border-top: 1px solid rgba(40,44,55,.17);
-  align-items: start;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: clamp(1.25rem,2.2vw,2rem);
 }
-.team-profile:first-child { border-top: 4px solid #30c6be; }
-.team-portrait {
+.team-profile {
   display: flex;
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 1rem;
+  min-width: 0;
+  min-height: clamp(11rem,13vw,13.5rem);
+  align-items: flex-end;
+  padding: clamp(1.6rem,2.4vw,2.25rem);
   overflow: hidden;
-  border-radius: 1.35rem .35rem 1.35rem 1.35rem;
-  background: #282c37;
-  color: #caffff;
+  border-top: 6px solid #30c6be;
+  border-radius: 1.45rem .4rem 1.45rem 1.45rem;
+  background: #fffefb;
+  box-shadow: 0 16px 34px rgba(40,44,55,.08);
 }
-.team-portrait small {
-  max-width: 9ch;
-  color: rgba(202,255,255,.72);
-  font-family: "DM Sans",sans-serif;
-  font-size: .62rem;
-  font-weight: 700;
-  line-height: 1.2;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-}
-.team-portrait span {
-  font-family: "Space Grotesk",sans-serif;
-  font-size: clamp(2.6rem,4vw,4.5rem);
-  font-weight: 500;
-  line-height: .8;
-  letter-spacing: -.08em;
-}
-.team-identity { padding-top: .2rem; }
+.team-identity { min-width: 0; }
 .team-identity h3 {
-  max-width: 12ch;
-  margin: 0 0 .65rem;
+  max-width: 15ch;
+  margin: 0 0 .75rem;
   color: #282c37;
   font-family: "Space Grotesk",sans-serif;
-  font-size: clamp(1.75rem,2.4vw,2.7rem);
+  font-size: clamp(2rem,2.8vw,3.15rem);
   font-weight: 600;
   line-height: .96;
   letter-spacing: -.05em;
@@ -2343,28 +2316,13 @@ body,
   text-transform: uppercase;
   letter-spacing: .08em;
 }
-.team-bio {
-  max-width: 52rem;
-  padding-top: .15rem;
-  color: rgba(40,44,55,.76);
-  font-size: 1rem;
-  line-height: 1.68;
-}
-.team-bio p { margin: 0; }
-.team-bio p + p { margin-top: 1rem; }
-.team-bio-reserved { min-height: 6.5rem; }
 
 @media (max-width: 980px) {
   .team-heading-row { flex-direction: column; gap: 1.5rem; }
   .team-heading-row h2 { flex-basis: auto; max-width: 11ch; }
   .team-heading-row > p { flex-basis: auto; max-width: 42rem; }
-  .team-profile {
-    grid-template-columns: 8rem minmax(0,1fr);
-    min-height: 0;
-  }
-  .team-identity { align-self: center; }
-  .team-bio { grid-column: 2; }
-  .team-bio-reserved { min-height: 2rem; }
+  .team-roster { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .team-profile { min-height: 11rem; }
 }
 
 @media (max-width: 620px) {
@@ -2373,18 +2331,10 @@ body,
   .team-heading-row h2 { font-size: clamp(3.25rem,15vw,4.75rem); }
   .team-heading-row > p { padding: 1.2rem 0 0; }
   .team-heading-row > p::before { top: 0; width: 3.25rem; height: 2px; }
-  .team-profile {
-    grid-template-columns: 6.75rem minmax(0,1fr);
-    gap: 1.35rem;
-    padding: 1.5rem 0;
-  }
-  .team-portrait { padding: .75rem; border-radius: 1rem .3rem 1rem 1rem; }
-  .team-portrait small { font-size: .52rem; }
-  .team-portrait span { font-size: 2.35rem; }
-  .team-identity h3 { font-size: clamp(1.65rem,8vw,2.25rem); }
-  .team-identity p { font-size: .72rem; }
-  .team-bio { grid-column: 1 / -1; font-size: .96rem; }
-  .team-bio-reserved { display: none; }
+  .team-roster { grid-template-columns: minmax(0,1fr); gap: 1rem; }
+  .team-profile { min-height: 9.5rem; padding: 1.5rem; }
+  .team-identity h3 { font-size: clamp(2rem,9vw,2.75rem); }
+  .team-identity p { font-size: .75rem; }
 }
 
 /* About team lockup: wider editorial measure and centered support restore balance. */
