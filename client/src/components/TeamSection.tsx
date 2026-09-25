@@ -5,11 +5,11 @@ type TeamMember = {
 
 const team: TeamMember[] = [
   { name: "Peter Tomassi", title: "Chief Executive Officer" },
+  { name: "Ady Das", title: "Chief Technologist" },
   { name: "Ryan Stadlman", title: "Chief Creative Officer" },
   { name: "Archana Haran", title: "Director Technical Program Management" },
   { name: "Tyler Heinerikson", title: "Head of Product" },
   { name: "Steven Cable", title: "Senior Financial Analyst" },
-  { name: "Ady Das", title: "Chief Technologist" },
 ];
 
 export default function TeamSection() {
